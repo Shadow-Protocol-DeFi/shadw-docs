@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadw - Dark Pool Institucional Descentralizado</title>
+    <meta name="description" content="Documentação completa do Shadw - Dark pool institucional descentralizado usando Railgun Protocol">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌑</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/solidity.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    
+    <!-- Mermaid for diagrams -->
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+          primaryColor: '#3b82f6',
+          primaryTextColor: '#fff',
+          primaryBorderColor: '#1e40af',
+          lineColor: '#64748b',
+          secondaryColor: '#8b5cf6',
+          tertiaryColor: '#10b981'
+        }
+      });
+    </script>
+    
+    <style>
+        :root {
+            --color-bg: #0a0a0a;
+            --color-bg-secondary: #1a1a1a;
+            --color-bg-tertiary: #2a2a2a;
+            --color-text: #f5f5f5;
+            --color-text-secondary: #d1d1d1;
+            --color-text-muted: #a0a0a0;
+            --color-primary: #ff8c00;
+            --color-primary-hover: #ff7700;
+            --color-accent: #ffa500;
+            --color-success: #ff9500;
+            --color-warning: #ffaa00;
+            --color-border: #333333;
+            --sidebar-width: 280px;
+            --header-height: 64px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: var(--color-bg-secondary);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .header-nav {
+            margin-left: auto;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .header-link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .header-link:hover {
+            background: var(--color-bg-tertiary);
+            color: var(--color-text);
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Layout */
+        .layout {
+            display: flex;
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--color-bg-secondary);
+            border-right: 1px solid var(--color-border);
+            position: fixed;
+            left: 0;
+            top: var(--header-height);
+            bottom: 0;
+            overflow-y: auto;
+            padding: 1.5rem 0;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--color-bg-tertiary);
+            border-radius: 3px;
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            padding: 0 1.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-item {
+            display: block;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            padding: 0.625rem 1.5rem;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: var(--color-bg-tertiary);
+            color: var(--color-text);
+        }
+
+        .nav-item.active {
+            background: var(--color-bg-tertiary);
+            color: var(--color-primary);
+            border-left-color: var(--color-primary);
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff8c00 0%, #ff6600 100%);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Content Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .section h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .section p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .section ul, .section ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-text-secondary);
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--color-bg-tertiary) !important;
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            padding: 1rem !important;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: var(--color-bg-tertiary);
+            border: 1px solid var(--color-border);
+            border-bottom: none;
+            border-radius: 0.5rem 0.5rem 0 0;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
+        .copy-btn {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--color-bg-secondary);
+            color: var(--color-text);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+            background: var(--color-bg-secondary);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        th {
+            background: var(--color-bg-tertiary);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        td {
+            color: var(--color-text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem 1.25rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--color-primary);
+            color: #93c5fd;
+        }
+
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: var(--color-warning);
+            color: #fcd34d;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--color-success);
+            color: #6ee7b7;
+        }
+
+        /* Links */
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--color-primary-hover);
+            text-decoration: underline;
+        }
+
+        .external-link::after {
+            content: '↗';
+            margin-left: 0.25rem;
+            font-size: 0.875em;
+        }
+
+        /* Resource Links */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .resource-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .resource-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-description {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .header-nav {
+                display: none;
+            }
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .badge-primary {
+            background: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+        }
+
+        .badge-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fcd34d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <a href="#" class="logo" onclick="showSection('home')">
+            <span class="logo-icon">🌑</span>
+            <span>Shadw</span>
+        </a>
+        <div class="header-spacer"></div>
+    </header>
+
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <nav>
+                <div class="nav-section">
+                    <div class="nav-section-title">Overview</div>
+                    <a href="#" class="nav-item active" onclick="showSection('home')">🏠 Home</a>
+                    <a href="#" class="nav-item" onclick="showSection('executive-summary')">📊 Executive Summary</a>
+                    <a href="#" class="nav-item" onclick="showSection('quickstart')">🚀 Quick Start</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Foundation</div>
+                    <a href="#" class="nav-item" onclick="showSection('railgun')">⚡ Railgun Protocol</a>
+                    <a href="#" class="nav-item" onclick="showSection('architecture')">🏗️ Architecture</a>
+                    <a href="#" class="nav-item" onclick="showSection('security')">🔒 Security & Privacy</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Implementation</div>
+                    <a href="#" class="nav-item" onclick="showSection('orderbook')">📖 Orderbook Logic</a>
+                    <a href="#" class="nav-item" onclick="showSection('eip712')">✍️ EIP-712 Signatures</a>
+                    <a href="#" class="nav-item" onclick="showSection('kyc')">🆔 KYC Implementation</a>
+                    <a href="#" class="nav-item" onclick="showSection('flows')">🔄 Flows & Diagrams</a>
+                    <a href="#" class="nav-item" onclick="showSection('code')">💻 Code Examples</a>
+                    <a href="#" class="nav-item" onclick="showSection('roadmap')">🗺️ Roadmap</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Business</div>
+                    <a href="#" class="nav-item" onclick="showSection('business-model')">💰 Business Model</a>
+                    <a href="#" class="nav-item" onclick="showSection('faq')">❓ FAQ</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Resources</div>
+                    <a href="#" class="nav-item" onclick="showSection('references')">📚 References</a>
+                    <a href="#" class="nav-item" onclick="showSection('glossary')">📖 Glossary</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1>Shadw Dark Pool</h1>
+                        <p>Dark pool institucional descentralizado. Trading privado em larga escala usando Railgun Protocol com compliance built-in.</p>
+                        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                            <button class="btn-primary" onclick="showSection('quickstart')">Get Started →</button>
+                            <button class="btn-primary" style="background: rgba(255,255,255,0.2);" onclick="showSection('executive-summary')">Read Docs</button>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="stat-value">3 meses</div>
+                                <div class="stat-label">Time to MVP</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">$30k-80k</div>
+                                <div class="stat-label">Investment Fase 0</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">Baixo</div>
+                                <div class="stat-label">Risco Técnico</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Por Que Shadw?</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-title">🔒 Privacidade Total</div>
+                        <p>Trades completamente privados usando zk-SNARKs. Ninguém vê contrapartes, valores ou preços.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">⚡ Railgun Protocol</div>
+                        <p>Usa infraestrutura battle-tested ($2B+ volume, 4+ anos) em vez de construir do zero.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">✅ Compliance Built-in</div>
+                        <p>KYC obrigatório, screening, viewing keys para auditores. Regulatório desde dia 1.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">🚀 Fast to Market</div>
+                        <p>MVP em 3 meses vs 24+ meses. $30k-80k vs $5-10M. Risco técnico mínimo.</p>
+                    </div>
+                </div>
+
+                <h2>Como Funciona</h2>
+                <div class="card">
+                    <ol>
+                        <li><strong>Shield:</strong> Usuários depositam tokens no Railgun (privado)</li>
+                        <li><strong>Order:</strong> Colocam ordens no orderbook offchain (PostgreSQL/Redis)</li>
+                        <li><strong>Match:</strong> Matching engine detecta crosses (offchain)</li>
+                        <li><strong>Execute:</strong> Railgun SDK executa trades privados (onchain via ZK)</li>
+                        <li><strong>Settle:</strong> Fundos transferidos, database atualizado, users notificados</li>
+                    </ol>
+                </div>
+
+                <div class="alert alert-info">
+                    <strong>💡 Key Insight:</strong> Orderbook é offchain (você), execução é onchain (Railgun). Melhor dos dois mundos: performance + privacidade.
+                </div>
+            </section>
+
+            <!-- Executive Summary Section -->
+            <section id="executive-summary" class="section">
+                <h2>Executive Summary</h2>
+                <p><span class="badge badge-primary">MVP</span><span class="badge badge-success">Fase 0</span></p>
+                
+                <h3>O Problema</h3>
+                <p>Blockchains públicas são completamente transparentes. Para instituições executando trades de $100k-10M+, isso cria riscos críticos:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Risco</th>
+                            <th>Impacto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Frontrunning</strong></td>
+                            <td>Bots de MEV antecipam trades e extraem valor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Exposição estratégica</strong></td>
+                            <td>Competidores veem posições em tempo real</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Target de hackers</strong></td>
+                            <td>Carteiras grandes identificadas e atacadas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Perda de vantagem</strong></td>
+                            <td>Price discovery antes da execução</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>A Solução</h3>
+                <p>Shadw oferece um dark pool onde:</p>
+                <ul>
+                    <li>✅ Trades são completamente privados (ZK-SNARKs)</li>
+                    <li>✅ Compliance built-in (KYC, screening, viewing keys)</li>
+                    <li>✅ Não-custodial (usuários mantêm controle)</li>
+                    <li>✅ Multi-chain (Arbitrum, Polygon, Ethereum, BSC)</li>
+                </ul>
+
+                <h3>Estratégia MVP</h3>
+                <div class="card">
+                    <p>Em vez de construir ZK do zero (24+ meses, $5-10M), usamos <strong>Railgun Protocol</strong>:</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspecto</th>
+                                <th>Build from Scratch</th>
+                                <th>Build com Railgun</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Time to Market</td>
+                                <td>24-36 meses</td>
+                                <td><strong>3 meses</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Custo</td>
+                                <td>$5M-10M</td>
+                                <td><strong>$30k-80k</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Risco Técnico</td>
+                                <td>Altíssimo</td>
+                                <td><strong>Baixo</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Maturidade</td>
+                                <td>0 (novo)</td>
+                                <td><strong>4+ anos, $2B+ volume</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Investment Fase 0</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-title">Cenário Conservador (DIY)</div>
+                        <ul>
+                            <li>Development: $0</li>
+                            <li>Opex (3 meses): $3.3k</li>
+                            <li>Liquidez: $10k</li>
+                            <li><strong>Total: $13.3k</strong></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Cenário Liberal (Terceirizado)</div>
+                        <ul>
+                            <li>Development: $25k</li>
+                            <li>Opex (3 meses): $5.4k</li>
+                            <li>Liquidez: $50k</li>
+                            <li><strong>Total: $80.4k</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Start Section -->
+            <section id="quickstart" class="section">
+                <h2>Quick Start Guide</h2>
+                
+                <div class="alert alert-info">
+                    <strong>🎯 Objetivo:</strong> Entender o fluxo básico e começar o desenvolvimento em minutos.
+                </div>
+
+                <h3>Pré-requisitos</h3>
+                <div class="code-header">
+                    <span>bash</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code class="language-bash">node --version  # v20+
+npm --version   # v9+
+git --version   # v2+
+</code></pre>
+
+                <h3>Setup Inicial</h3>
+                <div class="code-header">
+                    <span>bash</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code class="language-bash"># Clone repo
+git clone https://github.com/your-username/shadw-mvp
+cd shadw-mvp
+
+# Install dependencies
+npm install
+
+# Setup environment
+cp .env.example .env
+# Edit .env com suas credenciais
+</code></pre>
+
+                <h3>Estrutura do Projeto</h3>
+                <pre><code>shadw-mvp/
+├── frontend/          # Next.js app
+│   ├── pages/
+│   ├── components/
+│   └── hooks/
+├── backend/           # Node.js API
+│   ├── routes/
+│   ├── services/
+│   └── db/
+├── contracts/         # (vazio - usa Railgun)
+└── docs/             # Documentação
+</code></pre>
+
+                <h3>Próximos Passos</h3>
+                <ol>
+                    <li>Leia <a href="#" onclick="showSection('railgun')">Railgun Foundation</a></li>
+                    <li>Entenda <a href="#" onclick="showSection('architecture')">Architecture</a></li>
+                    <li>Implemente <a href="#" onclick="showSection('code')">Code Examples</a></li>
+                    <li>Siga <a href="#" onclick="showSection('roadmap')">12-Week Roadmap</a></li>
+                </ol>
+            </section>
+
+            <!-- Continue with other sections... -->
+            <!-- I'll add the rest in the script section for dynamic loading -->
+
+        </main>
+    </div>
+
+    <!-- Load content -->
+    <script src="content.js"></script>
+    
+    <script>
+        // Navigation with Mermaid support
+        function showSection(sectionId) {
+            // Load dynamic content if available
+            if (window.shadwSections && window.shadwSections[sectionId]) {
+                let section = document.getElementById(sectionId);
+                if (!section) {
+                    // Create section if doesn't exist
+                    section = document.createElement('section');
+                    section.id = sectionId;
+                    section.className = 'section';
+                    document.querySelector('.main').appendChild(section);
+                }
+                section.innerHTML = window.shadwSections[sectionId];
+            }
+            
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.classList.add('active');
+            }
+            
+            // Update nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Close mobile menu
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebar').classList.remove('open');
+            }
+            
+            // Initialize Mermaid diagrams and syntax highlighting
+            setTimeout(() => {
+                // Highlight code blocks
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+                
+                // Initialize Mermaid diagrams
+                if (typeof mermaid !== 'undefined') {
+                    mermaid.run({
+                        querySelector: '.mermaid'
+                    });
+                }
+            }, 100);
+        }
+
+        // Toggle mobile sidebar
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        // Copy code to clipboard
+        function copyCode(btn) {
+            const pre = btn.parentElement.nextElementSibling;
+            const code = pre.querySelector('code');
+            navigator.clipboard.writeText(code.textContent);
+            btn.textContent = 'Copied!';
+            setTimeout(() => {
+                btn.textContent = 'Copy';
+            }, 2000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+            
+            // Initialize Mermaid with config
+            if (typeof mermaid !== 'undefined') {
+                mermaid.initialize({ 
+                    startOnLoad: true,
+                    theme: 'dark',
+                    themeVariables: {
+                        primaryColor: '#ff8c00',
+                        primaryTextColor: '#fff',
+                        primaryBorderColor: '#ff6600',
+                        lineColor: '#ffa500',
+                        secondaryColor: '#ffb732',
+                        tertiaryColor: '#ffc966'
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
