@@ -8,7 +8,7 @@ sections.home = `
     <div class="hero">
         <div class="hero-content">
             <h1>Shadw Dark Pool</h1>
-            <p>Dark pool institucional descentralizado para trading privado em blockchain usando Railgun Protocol.</p>
+            <p>---Dark pool institucional descentralizado para trading privado em blockchain usando Railgun Protocol.</p>
             
             <div class="card" style="background: linear-gradient(135deg, rgba(255,140,0,0.08) 0%, rgba(255,102,0,0.04) 100%); margin-top: 2rem; border: 2px solid rgba(255,140,0,0.3);">
                 <h3 style="color: #ff8c00; margin-bottom: 1.5rem;">🎯 Principais Objetivos do Projeto</h3>
