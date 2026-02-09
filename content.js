@@ -30,7 +30,7 @@ sections.home = `
                         <span style="color: #e0e0e0;">Demonstrar 99%+ proteção contra MEV e frontrunning com unit economics positivos</span>
                     </li>
                 </ul>
-            </div>        </div>
+            </div>       
     </div>
 
     <div class="card">
