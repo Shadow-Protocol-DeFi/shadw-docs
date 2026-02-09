@@ -10,24 +10,27 @@ sections.home = `
             <h1>Shadw Dark Pool</h1>
             <p>Dark pool institucional descentralizado para trading privado em blockchain usando Railgun Protocol.</p>
             
-            <div class="card" style="background: linear-gradient(135deg, rgba(255,140,0,0.1) 0%, rgba(255,102,0,0.05) 100%); margin-top: 2rem;">
-                <h3>🎯 Principais Objetivos do Projeto</h3>
+            <div class="card" style="background: linear-gradient(135deg, rgba(255,140,0,0.08) 0%, rgba(255,102,0,0.04) 100%); margin-top: 2rem; border: 2px solid rgba(255,140,0,0.3);">
+                <h3 style="color: #ff8c00; margin-bottom: 1.5rem;">🎯 Principais Objetivos do Projeto</h3>
                 <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,140,0,0.2);">
-                        <strong>Técnico:</strong> Integrar Railgun SDK para execução privada de trades com latência média inferior a 60 segundos
+                    <li style="padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,140,0,0.15); background: rgba(255,255,255,0.05);">
+                        <strong style="color: #ff8c00;">Técnico:</strong> 
+                        <span style="color: #e0e0e0;">Integrar Railgun SDK para execução privada de trades com latência média inferior a 60 segundos</span>
                     </li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,140,0,0.2);">
-                        <strong>Negócio:</strong> Validar product-market fit com 10-20 instituições executando mínimo 3 trades e $100k+ em volume
+                    <li style="padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,140,0,0.15); background: rgba(255,255,255,0.05);">
+                        <strong style="color: #ff8c00;">Negócio:</strong> 
+                        <span style="color: #e0e0e0;">Validar product-market fit com 10-20 instituições executando mínimo 3 trades e $100k+ em volume</span>
                     </li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,140,0,0.2);">
-                        <strong>Compliance:</strong> Implementar KYC obrigatório, whitelist e viewing keys desde o primeiro dia
+                    <li style="padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,140,0,0.15); background: rgba(255,255,255,0.05);">
+                        <strong style="color: #ff8c00;">Compliance:</strong> 
+                        <span style="color: #e0e0e0;">Implementar KYC obrigatório, whitelist e viewing keys desde o primeiro dia</span>
                     </li>
-                    <li style="padding: 0.5rem 0;">
-                        <strong>Performance:</strong> Demonstrar 99%+ proteção contra MEV e frontrunning com unit economics positivos
+                    <li style="padding: 0.8rem 1rem; background: rgba(255,255,255,0.05);">
+                        <strong style="color: #ff8c00;">Performance:</strong> 
+                        <span style="color: #e0e0e0;">Demonstrar 99%+ proteção contra MEV e frontrunning com unit economics positivos</span>
                     </li>
                 </ul>
-            </div>
-        </div>
+            </div>        </div>
     </div>
 
     <div class="card">
