@@ -452,6 +452,7 @@ sections.architecture = `
     <div class="alert alert-success">
         <strong>💡 Arquivo Mermaid:</strong> <code>architecture.mermaid</code> - Gere o PNG para ter visualização completa das 8 camadas com cores gradiente laranja.
     </div>
+    
 `;
 
 // ==================== SECURITY ====================
@@ -867,10 +868,12 @@ sections.flows = `
     <div class="card">
         <h3>1. Complete Trade Flow - Cenário Real</h3>
         <p><strong>Descrição:</strong> Fluxo completo desde Alice placing BUY order (Monday) até Bob placing SELL (Wednesday) e execução via Railgun ZK-SNARKs.</p>
+
+        <!-- ✅ INSERIR IMAGEM AQUI -->
+        <img src="trade-flow_mermaid.png" alt="Trade Flow Diagram" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; border: 1px solid rgba(255,140,0,0.3);">
         
         <p><strong>Arquivo Mermaid:</strong> <code>trade-flow.mermaid</code></p>
-        <p><strong>PNG Final:</strong> <code>trade-flow.png</code></p>
-        
+                
         <div class="alert alert-info">
             <strong>📋 Elementos do Diagrama:</strong>
             <ul>
@@ -888,9 +891,11 @@ sections.flows = `
     <div class="card">
         <h3>2. Architecture Diagram - 8 Layers</h3>
         <p><strong>Descrição:</strong> Arquitetura completa do sistema Shadw em camadas (Layer 7 Users → Layer 0 Data).</p>
-        
+
+        <!-- ✅ INSERIR IMAGEM AQUI -->
+        <img src="architecture_mermaid.png" alt="Architecture Diagram" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; border: 1px solid rgba(255,140,0,0.3);">
+
         <p><strong>Arquivo Mermaid:</strong> <code>architecture.mermaid</code></p>
-        <p><strong>PNG Final:</strong> <code>architecture.png</code></p>
         
         <div class="alert alert-info">
             <strong>📋 Camadas (Top → Bottom):</strong>
@@ -912,10 +917,12 @@ sections.flows = `
     <div class="card">
         <h3>3. Privacy Flow - Shield/Unshield Lifecycle</h3>
         <p><strong>Descrição:</strong> Como usuários entram (shield), operam (trade) e saem (unshield) do sistema privado Railgun.</p>
+
+        <!-- ✅ INSERIR IMAGEM AQUI -->
+        <img src="privacy-flow_mermaid.png" alt="Privacy Flow Diagram" style="max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; border: 1px solid rgba(255,140,0,0.3);">
         
         <p><strong>Arquivo Mermaid:</strong> <code>privacy-flow.mermaid</code></p>
-        <p><strong>PNG Final:</strong> <code>privacy-flow.png</code></p>
-        
+               
         <div class="alert alert-info">
             <strong>📋 3 Fases do Ciclo:</strong>
             <ul>
