@@ -7,7 +7,10 @@ const sections = {};
 sections.home = `
     <div class="hero" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); border-bottom: 3px solid #ff8c00;">
         <div class="hero-content">
-            <h1 style="color: #ff8c00; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Shadw Dark Pool</h1>
+           <h1 style="color: #ff8c00; text-shadow: 0 2px 4px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 0.8rem;">
+            <img src="shadw-logo.png" alt="Shadw Logo" style="width: 30px; height: 30px; object-fit: contain;">
+            Shadw Dark Pool
+            </h1>
             <p style="color: #e0e0e0; font-size: 1.1rem; margin-bottom: 2rem;">--Dark pool institucional descentralizado para trading privado em blockchain usando Railgun Protocol.</p>
             
             <div class="card" style="background: linear-gradient(135deg, rgba(255,140,0,0.12) 0%, rgba(255,102,0,0.06) 100%); margin-top: 2rem; border: 2px solid rgba(255,140,0,0.4); box-shadow: 0 4px 12px rgba(255,140,0,0.15);">
