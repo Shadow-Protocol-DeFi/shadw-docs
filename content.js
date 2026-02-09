@@ -5,35 +5,35 @@ const sections = {};
 
 // ==================== HOME ====================
 sections.home = `
-    <div class="hero">
+    <div class="hero" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); border-bottom: 3px solid #ff8c00;">
         <div class="hero-content">
-            <h1>Shadw Dark Pool</h1>
-            <p>---Dark pool institucional descentralizado para trading privado em blockchain usando Railgun Protocol.</p>
+            <h1 style="color: #ff8c00; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Shadw Dark Pool</h1>
+            <p style="color: #e0e0e0; font-size: 1.1rem; margin-bottom: 2rem;">--Dark pool institucional descentralizado para trading privado em blockchain usando Railgun Protocol.</p>
             
-            <div class="card" style="background: linear-gradient(135deg, rgba(255,140,0,0.08) 0%, rgba(255,102,0,0.04) 100%); margin-top: 2rem; border: 2px solid rgba(255,140,0,0.3);">
-                <h3 style="color: #ff8c00; margin-bottom: 1.5rem;">🎯 Principais Objetivos do Projeto</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,140,0,0.15); background: rgba(255,255,255,0.05);">
-                        <strong style="color: #ff8c00;">Técnico:</strong> 
-                        <span style="color: #e0e0e0;">Integrar Railgun SDK para execução privada de trades com latência média inferior a 60 segundos</span>
+            <div class="card" style="background: linear-gradient(135deg, rgba(255,140,0,0.12) 0%, rgba(255,102,0,0.06) 100%); margin-top: 2rem; border: 2px solid rgba(255,140,0,0.4); box-shadow: 0 4px 12px rgba(255,140,0,0.15);">
+                <h3 style="color: #ffa500; margin-bottom: 1.5rem; font-size: 1.3rem;">🎯 Principais Objetivos do Projeto</h3>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: 1rem; margin-bottom: 0.5rem; border-left: 4px solid #ff8c00; background: rgba(0,0,0,0.3); border-radius: 4px;">
+                        <strong style="color: #ffa500; display: block; margin-bottom: 0.3rem; font-size: 1.05rem;">Técnico:</strong> 
+                        <span style="color: #f0f0f0; line-height: 1.6;">Integrar Railgun SDK para execução privada de trades com latência média inferior a 60 segundos</span>
                     </li>
-                    <li style="padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,140,0,0.15); background: rgba(255,255,255,0.05);">
-                        <strong style="color: #ff8c00;">Negócio:</strong> 
-                        <span style="color: #e0e0e0;">Validar product-market fit com 10-20 instituições executando mínimo 3 trades e $100k+ em volume</span>
+                    <li style="padding: 1rem; margin-bottom: 0.5rem; border-left: 4px solid #ff8c00; background: rgba(0,0,0,0.3); border-radius: 4px;">
+                        <strong style="color: #ffa500; display: block; margin-bottom: 0.3rem; font-size: 1.05rem;">Negócio:</strong> 
+                        <span style="color: #f0f0f0; line-height: 1.6;">Validar product-market fit com 10-20 instituições executando mínimo 3 trades e $100k+ em volume</span>
                     </li>
-                    <li style="padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,140,0,0.15); background: rgba(255,255,255,0.05);">
-                        <strong style="color: #ff8c00;">Compliance:</strong> 
-                        <span style="color: #e0e0e0;">Implementar KYC obrigatório, whitelist e viewing keys desde o primeiro dia</span>
+                    <li style="padding: 1rem; margin-bottom: 0.5rem; border-left: 4px solid #ff8c00; background: rgba(0,0,0,0.3); border-radius: 4px;">
+                        <strong style="color: #ffa500; display: block; margin-bottom: 0.3rem; font-size: 1.05rem;">Compliance:</strong> 
+                        <span style="color: #f0f0f0; line-height: 1.6;">Implementar KYC obrigatório, whitelist e viewing keys desde o primeiro dia</span>
                     </li>
-                    <li style="padding: 0.8rem 1rem; background: rgba(255,255,255,0.05);">
-                        <strong style="color: #ff8c00;">Performance:</strong> 
-                        <span style="color: #e0e0e0;">Demonstrar 99%+ proteção contra MEV e frontrunning com unit economics positivos</span>
+                    <li style="padding: 1rem; border-left: 4px solid #ff8c00; background: rgba(0,0,0,0.3); border-radius: 4px;">
+                        <strong style="color: #ffa500; display: block; margin-bottom: 0.3rem; font-size: 1.05rem;">Performance:</strong> 
+                        <span style="color: #f0f0f0; line-height: 1.6;">Demonstrar 99%+ proteção contra MEV e frontrunning com unit economics positivos</span>
                     </li>
                 </ul>
-            </div>   
-         </div>
+            </div>
+        </div>
     </div>
-
+    
     <div class="card">
         <h2><span class="badge badge-primary">1</span> Identificação</h2>
         <table>
