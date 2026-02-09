@@ -8,7 +8,7 @@ sections.home = `
     <div class="hero" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); border-bottom: 3px solid #ff8c00;">
         <div class="hero-content">
            <h1 style="color: #ff8c00; text-shadow: 0 2px 4px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 0.8rem;">
-            <img src="shadw-logo.png" alt="Shadw Logo" style="width: 30px; height: 30px; object-fit: contain;">
+            <img src="shadw-logo.jpeg" alt="Shadw Logo" style="width: 30px; height: 30px; object-fit: contain;">
             Shadw Dark Pool
             </h1>
             <p style="color: #e0e0e0; font-size: 1.1rem; margin-bottom: 2rem;">--Dark pool institucional descentralizado para trading privado em blockchain usando Railgun Protocol.</p>
